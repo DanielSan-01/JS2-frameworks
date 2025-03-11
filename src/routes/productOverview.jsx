@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { ProductsCard } from "../components/productsCard";
 import { useProductStore } from "../stores";
 
@@ -19,8 +18,7 @@ export function ProductOverview() {
 
     return () => unsubscribe();
   }, []);
-
-  console.log(products);
+  
 
   if (loading) {
     return <p>Loading...</p>;
@@ -31,12 +29,6 @@ export function ProductOverview() {
   }
 
   return (
-    <>
-      <div className='mx-1 mt-28 lg:mx-24 bg-white'>
-        <div className='flex flex-wrap justify-center mt-5'>
-          <ProductsCard products={products} />
-        </div>
-      </div>
-    </>
+    <ProductsCard products={products} />
   );
 }

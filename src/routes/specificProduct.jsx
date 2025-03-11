@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { SpecificCard } from "../components/specificCard";
 
 export function SpecificProduct() {
@@ -11,36 +11,24 @@ export function SpecificProduct() {
   useEffect(() => {
     async function fetchData() {
       try {
-        setTimeout(async () => {
-          const res = await fetch(`https://v2.api.noroff.dev/online-shop/${id}`);
-          const data = await res.json();
-          setProduct(data.data);
-          setLoading(false);
-        }, 1000);
+        const res = await fetch(`https://v2.api.noroff.dev/online-shop/${id}`);
+        const data = await res.json();
+        setProduct(data.data);
+        setLoading(false);
       } catch (error) {
         console.error("Failed to fetch product:", error);
+        setError("Could not load product.");
         setLoading(false);
-      }}
+      }
+    }
     fetchData();
   }, [id]);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p className="text-red-500">Error: {error}</p>;
-  }
-
-  if (!product) {
-    return <p className="text-gray-500">Product not found.</p>;
-  }
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p className="text-red-500">{error}</p>;
+  if (!product) return <p className="text-gray-500">Product not found.</p>;
 
   return (
-    <>
-      <div className="mx-0 mt-10 lg:mx-28">
-        <SpecificCard product={product} />
-      </div>
-    </>
+      <SpecificCard product={product} />
   );
 }

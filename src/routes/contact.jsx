@@ -29,63 +29,49 @@ export function Contact() {
   };
 
   return (
-    <>
       <div>
-        <div className='mx-1 mt-28 lg:mx-28 flex flex-col items-center'>
+        <div>
           <h1>Contact Us</h1>
-          <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col w-72 lg:w-96 rounded-sm p-4'>
-            <label 
-              htmlFor="name" 
-              className='text-sm font-white text-black pt-4 pb-1'
-            >Full name:</label>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <label htmlFor="name">Full name:</label>
             <input
               type="text"
-              className='rounded-sm px-2 py-1 bg-white'
+              className='border'
               {...register('name')}
             />
-            {errors.name && <p className='text-xs text-black'>{errors.name.message}</p>}
+            {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
 
-            <label 
-              htmlFor="subject"
-              className='text-sm font-white text-black pt-4 pb-1'
-            >Subject:</label>
+            <label htmlFor="subject">Subject:</label>
             <input
               type="text"
-              className='rounded-sm px-2 py-1 bg-white '
+              className='border '
               {...register('subject')}
             />
-            {errors.subject && <p className='text-xs text-black'>{errors.subject.message}</p>}
+            {errors.subject && <p className='text-red-500'>{errors.subject.message}</p>}
 
-            <label 
-              htmlFor="email"
-              className='text-sm font-white text-black pt-4 pb-1'
-            >Your email:</label>
+            <label htmlFor="email">Your email:</label>
             <input
               type="email"
-              className='rounded-sm px-2 py-1 bg-white'
+              className='border'
               {...register('email')}
             />
-            {errors.email && <p className='text-xs text-black'>{errors.email.message}</p>}
+            {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
 
-            <label 
-              htmlFor="body"
-              className='text-sm font-white text-black pt-4 pb-1'
-            >Body:</label>
+            <label htmlFor="body">Body:</label>
             <textarea 
-              className='rounded-sm px-2 py-1 bg-white'
+              className='border'
               {...register('body')}
             />
-            {errors.body && <p className='text-xs text-black'>{errors.body.message}</p>}
+            {errors.body && <p className='text-red-500'>{errors.body.message}</p>}
 
-            {isSubmittedSuccessfully && <p className="text-black mt-2">Form submitted successfully!</p>}
+            {isSubmittedSuccessfully && <p>Form submitted successfully!</p>}
 
             <button 
               type="submit"
-              className='border border-white px-2 py-1.5 hover:bg-white hover:text-black mt-8 rounded-sm'
+              className='border hover:bg-black hover:text-white'
             >Submit</button>
           </form>
         </div>
       </div>
-    </>
   );
 }
